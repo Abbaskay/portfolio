@@ -67,7 +67,7 @@ export const cases = [
     description:
       'Marketing site for an IT and sales agency — two full design directions built end to end so the team could compare the real thing before launch.',
     stack: 'Tailwind CSS / Font Awesome',
-    live: 'https://opus-tech-studios.vercel.app',
+    live: 'https://opustechstudios.com',
   },
   {
     slug: 'oivet-india',
