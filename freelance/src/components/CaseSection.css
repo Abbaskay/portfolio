@@ -1,0 +1,244 @@
+.case {
+  position: sticky;
+  top: calc(var(--header-h) + 14px);
+  z-index: 1;
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 -24px 50px -40px rgba(10, 10, 10, 0.5);
+  overflow: hidden;
+}
+
+.case--template {
+  background-color: var(--paper-2);
+  border-style: dashed;
+}
+
+/* hairline inner frame + corner crosshair ticks (the "blowout") */
+.case-blowout {
+  position: absolute;
+  inset: clamp(0.7rem, 1.4vw, 1.1rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.case-tick {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+}
+
+.case-tick::before,
+.case-tick::after {
+  content: '';
+  position: absolute;
+  background-color: var(--accent, var(--ink));
+}
+
+.case-tick::before {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  margin-left: -0.5px;
+}
+
+.case-tick::after {
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  margin-top: -0.5px;
+}
+
+.case-tick--tl { top: -5px; left: -5px; }
+.case-tick--tr { top: -5px; right: -5px; }
+.case-tick--bl { bottom: -5px; left: -5px; }
+.case-tick--br { bottom: -5px; right: -5px; }
+
+.case-no {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0.62rem;
+  color: var(--accent, var(--muted));
+}
+
+.case-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.case-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.case-sector {
+  font-size: 0.6rem;
+}
+
+.case-title {
+  font-size: clamp(1.9rem, 4.4vw, 3.9rem);
+  color: var(--ink);
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  color: var(--accent, var(--muted));
+}
+
+.case-featured {
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+}
+
+.case-desc {
+  font-size: clamp(0.86rem, 1.2vw, 0.98rem);
+  color: var(--muted);
+  max-width: 46ch;
+}
+
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.case-stack,
+.case-note {
+  font-size: 0.6rem;
+}
+
+.case-disclosure {
+  font-size: 0.72rem;
+  color: var(--muted);
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+
+/* --- browser mockup with slow in-view pan --- */
+
+.case-shot {
+  --viewh: clamp(200px, 25vw, 330px);
+  perspective: 1200px;
+}
+
+.browser {
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--paper);
+  box-shadow: 0 40px 70px -50px rgba(10, 10, 10, 0.75);
+  transform: rotateY(-7deg) rotateX(2deg) scale(0.97);
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease);
+}
+
+.case.is-seen .browser {
+  transform: rotateY(-6deg) rotateX(1.5deg) scale(1);
+}
+
+.case:hover .browser {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.01);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.browser-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--line-strong);
+}
+
+.browser-dot:first-child {
+  background-color: var(--accent, var(--line-strong));
+}
+
+.browser-url {
+  margin-left: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browser-view {
+  height: var(--viewh);
+  overflow: hidden;
+  background-color: var(--paper-2);
+}
+
+.browser-pan {
+  width: 100%;
+  height: auto;
+  /* % in translate resolves against the image's own (tall) height */
+  animation: browser-pan 26s var(--ease) 1.2s infinite alternate both;
+}
+
+@keyframes browser-pan {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% + var(--viewh)));
+  }
+}
+
+@media (max-width: 860px) {
+  .case-body {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .browser {
+    transform: none;
+  }
+
+  .case.is-seen .browser,
+  .case:hover .browser {
+    transform: none;
+  }
+
+  .case-shot {
+    --viewh: clamp(180px, 46vw, 280px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .browser-pan {
+    animation: none;
+  }
+}

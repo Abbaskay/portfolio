@@ -1,0 +1,105 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 4rem;
+  background-color: #0d0a0f;
+  /* Deep dark magenta/black */
+  background-image:
+    linear-gradient(rgba(122, 197, 235, 0.339) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 175, 216, 0.306) 1px, transparent 1px);
+  background-size: 35px 35px;
+  color: #fdfdfd;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  width: 100%;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+}
+
+.about-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.about-content {
+  display: block;
+}
+
+.about-text-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-text {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.5;
+  font-family: var(--font-primary);
+  color: #f3f4f6;
+}
+
+.highlight-blue {
+  color: #93c5fd;
+  /* Soft Blue */
+}
+
+.highlight-gold {
+  color: #fbbf24;
+  /* Gold */
+}
+
+.about-text-secondary {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+.about-tech-section {
+  margin-top: 1rem;
+}
+
+.tech-intro {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.tech-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tech-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  color: #e5e5e5;
+}
+
+.tech-bullet {
+  color: #34d399;
+  /* Mint green */
+}
+
+@media (max-width: 900px) {
+  .about {
+    padding: 5rem 2rem;
+  }
+}

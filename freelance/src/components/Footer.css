@@ -1,0 +1,79 @@
+.ft {
+  position: relative;
+  z-index: 2;
+  background-color: var(--ink);
+  color: var(--paper);
+  padding: clamp(4rem, 12vw, 9rem) var(--gutter) clamp(2rem, 5vw, 3.5rem);
+  scroll-margin-top: var(--header-h);
+}
+
+.ft-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.ft-eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.ft-title {
+  font-size: clamp(2.4rem, 10vw, 7.5rem);
+  line-height: 0.92;
+}
+
+.ft-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 2.6vw, 1.7rem);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: border-color 0.4s var(--ease), gap 0.4s var(--ease);
+}
+
+.ft-mail:hover {
+  border-bottom-color: var(--paper);
+  gap: 1.1rem;
+}
+
+.ft-socials {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.ft-socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.ft-socials a:hover {
+  background-color: var(--paper);
+  color: var(--ink);
+  transform: translateY(-3px);
+}
+
+.ft-mark {
+  font-size: clamp(6rem, 26vw, 20rem);
+  line-height: 0.8;
+  margin-top: clamp(2rem, 6vw, 4rem);
+  color: var(--paper);
+  user-select: none;
+}
+
+.ft-year {
+  color: rgba(255, 255, 255, 0.45);
+}

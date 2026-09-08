@@ -1,0 +1,203 @@
+.experience-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-highlight {
+  background-color: #629de0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: white;
+  padding: 6rem 2rem;
+  position: relative;
+  /* Removed overflow: hidden so sticky positioning works */
+}
+
+.highlight-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.highlight-label {
+  font-size: 3.9rem;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  color: #e4e258;
+}
+
+.highlight-text {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.15;
+  font-family: 'Abril Fatface', serif;
+  font-weight: 400;
+  display: inline;
+}
+
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.space {
+  display: inline-block;
+}
+
+.text-accent-orange {
+  color: #e4e258;
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+/* Scroll-Driven Tabs Architecture */
+.tabs-scroll-area {
+  height: 350vh;
+  /* Defines how long the scroll journey is */
+  position: relative;
+  margin-top: 8rem;
+}
+
+.tabs-sticky-content {
+  position: sticky;
+  top: 15vh;
+  /* Stick just below the top of the viewport */
+}
+
+/* Tabs Styling */
+.tabs-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4rem;
+  font-family: var(--font-primary);
+}
+
+.tabs-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-indicator {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 50px;
+  background: #e4e258;
+  /* Mint green accent */
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.tab-btn {
+  height: 50px;
+  padding: 0 1.5rem;
+  text-align: left;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  border: none;
+  font-size: 1.05rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e4e258;
+}
+
+.tab-btn.active {
+  color: #e4e258;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-role {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.tab-company {
+  color: #e4e258;
+}
+
+.tab-date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.tab-details {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tab-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.bullet-icon {
+  color: #e4e258;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .experience-highlight {
+    padding: 6rem 2rem;
+  }
+
+  .highlight-text {
+    line-height: 1.25;
+  }
+
+  .tabs-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .tabs-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0;
+  }
+
+  .tab-indicator {
+    display: none;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    min-width: max-content;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .tab-btn.active {
+    border-bottom: 2px solid #e4e258;
+  }
+}

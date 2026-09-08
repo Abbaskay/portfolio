@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Helvetica+Neue:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --text-muted: #737373;
+  --border: #e5e5e5;
+  --border-dark: #cccccc;
+  
+  --font-primary: 'Helvetica Neue', 'Inter', -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Grid Layout System */
+.page-wrapper {
+  min-height: 100vh;
+}
+
+.main-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-section {
+  border-bottom: 1px solid var(--border);
+}
+
+#about,
+#work,
+#experience,
+#skills,
+#contact {
+  scroll-margin-top: 64px;
+}
+
+@media (max-width: 900px) {
+  #about,
+  #work,
+  #experience,
+  #skills,
+  #contact {
+    scroll-margin-top: 56px;
+  }
+}
+
+.grid-section:last-child {
+  border-bottom: none;
+}
+
+/* Utilities */
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,232 @@
+.hero {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 0;
+  height: calc(100svh - var(--header-h));
+  min-height: 520px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--paper);
+}
+
+/* --- screenshot carousel --- */
+
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+  /* fade the rail out at both edges, the way the reference blurs its outer cards */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+
+.hero-parallax {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.7s var(--ease);
+  will-change: transform;
+}
+
+.hero-rail {
+  display: flex;
+  gap: clamp(1rem, 1.8vw, 1.75rem);
+  width: max-content;
+  transform-style: preserve-3d;
+}
+
+/* track holds 3 identical copies, so one third is a seamless loop */
+.hero-rail--a {
+  animation: hero-drift-fwd 58s linear infinite;
+}
+
+.hero-rail--b {
+  animation: hero-drift-rev 72s linear infinite;
+}
+
+.hero-rail--c {
+  animation: hero-drift-fwd 88s linear infinite;
+}
+
+@keyframes hero-drift-fwd {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-33.3333%, 0, 0); }
+}
+
+@keyframes hero-drift-rev {
+  from { transform: translate3d(-33.3333%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+.hero:hover .hero-rail {
+  animation-play-state: paused;
+}
+
+.hero-card {
+  flex: 0 0 auto;
+  width: clamp(190px, 21vw, 330px);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background-color: var(--paper-2);
+  transform: rotateY(var(--r, 0deg)) translateZ(var(--z, 0px));
+  box-shadow: 0 30px 60px -40px rgba(10, 10, 10, 0.5);
+}
+
+.hero-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.5;
+}
+
+/* soft radial scrim so the headline stays readable over the darker shots */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    58% 46% at 50% 50%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.78) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* --- foreground --- */
+
+.hero-fg {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  pointer-events: none;
+}
+
+.hero-fg .pill,
+.hero-fg a {
+  pointer-events: auto;
+}
+
+.hero-kicker {
+  font-size: 0.62rem;
+  color: var(--ink);
+  opacity: 0.65;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 10.5vw, 8rem);
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* punch the headline out of the busy carousel behind it */
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.95), 0 0 14px rgba(255, 255, 255, 0.9);
+}
+
+.hero-static {
+  display: block;
+  font-size: 0.28em;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  margin-bottom: 1.15em;
+  color: var(--muted);
+}
+
+.hero-swap {
+  display: block;
+  overflow: hidden;
+  line-height: 0.92;
+  padding-bottom: 0.08em;
+}
+
+.hero-word {
+  display: block;
+  animation: hero-word-in 0.85s var(--ease) both;
+  white-space: nowrap;
+}
+
+@keyframes hero-word-in {
+  from {
+    transform: translateY(105%) skewY(4deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.hero-sub {
+  max-width: 46ch;
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  font-weight: 500;
+  color: var(--ink);
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 1),
+    0 0 8px rgba(255, 255, 255, 1),
+    0 0 3px rgba(255, 255, 255, 1);
+}
+
+.hero-explore {
+  margin-top: 0.5rem;
+  background-color: var(--paper);
+}
+
+/* --- rotated flanking labels --- */
+
+.hero-flank {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  font-size: 0.6rem;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+.hero-flank--l {
+  left: 0;
+  transform: translateX(-38%) rotate(-90deg);
+}
+
+.hero-flank--r {
+  right: 0;
+  transform: translateX(38%) rotate(90deg);
+}
+
+@media (max-width: 900px) {
+  .hero-flank {
+    display: none;
+  }
+
+  /* quieten the collage so the headline stays readable on small screens */
+  .hero-card img {
+    opacity: 0.32;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rail {
+    animation: none;
+  }
+
+  .hero-word {
+    animation: none;
+  }
+}

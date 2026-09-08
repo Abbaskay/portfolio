@@ -1,0 +1,114 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 4rem 4rem 2rem 4rem;
+  justify-content: space-between;
+}
+
+.footer-top-row {
+  display: flex;
+  justify-content: space-between; /* Pushes Title to left, Email to right */
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.footer-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-align: left;
+}
+
+.footer-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+  width: max-content;
+}
+
+.cta-icon {
+  transition: transform 0.3s ease;
+}
+
+.footer-cta:hover {
+  opacity: 0.7;
+}
+
+.footer-cta:hover .cta-icon {
+  transform: translate(10px, -10px);
+}
+
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between; /* Pushes Socials to left, Copyright to right */
+  align-items: flex-end;
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 4rem; /* Lots of space between GITHUB and LINKEDIN */
+}
+
+.footer-socials a {
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  position: relative;
+  text-decoration: none;
+}
+
+.footer-socials a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-socials a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.footer-copyright {
+  font-size: 1rem;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  font-family: monospace;
+}
+
+@media (max-width: 1024px) {
+  .footer-container {
+    padding: 6rem 2rem 4rem 2rem;
+  }
+  .footer-top-row {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .footer-bottom-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+}
